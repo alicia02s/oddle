@@ -9,8 +9,9 @@ import {
 
 import App from './App.jsx'
 import LandingPage from './LandingPage.jsx'
+import Game from './Game.jsx'
 
-import './index.css'
+import './Style.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -18,6 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Routes>
         <Route exact path='/' element={<App />} />
         <Route exact path='/LandingPage' element={<LandingPage />} />
+        <Route exact path='/Game' element={<Game />} />
       </Routes>
     </Router>
     

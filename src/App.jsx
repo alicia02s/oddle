@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 
 import {Link } from "react-router-dom";
 
-import './App.css'
+import './Style.css'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -15,6 +15,12 @@ function App() {
         <Link to='/LandingPage'>
           <button>
             Landing Page
+          </button>
+        </Link>
+
+        <Link to='/Game'>
+          <button>
+            Game
           </button>
         </Link>
         
