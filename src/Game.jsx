@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function Game() {
-    const [numSeedWords, setNumSeedWords] = useState(3);
+    const [numSeedWords, setNumSeedWords] = useState(1);
     const [seedWords, setSeedWords] = useState([]);
     const [allWords, setAllWords] = useState([]);
 
