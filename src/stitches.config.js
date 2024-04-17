@@ -18,15 +18,21 @@ export const {
       },
       space: {
         lg: '0.75rem',
-        xl: '0.875rem',
-        xxl: '1rem',
+        xl: '1rem',
+        xxl: '2rem',
+        xxxl: '2.5rem',
       },
       radii: {
         rounded: '0.25rem',
         rounded_md: '0.375rem',
+        rounded_lg: '2.75rem',
+        rounded_xl: '3.5rem',
+        rounded_xxl: '5rem',
       },
       fontSizes: {
         sm: '0.875rem',
+        lg: '1.25rem',
+        xl: '2.5rem',
       },
       lineHeights: {
         sm: '1.25rem',
@@ -44,11 +50,6 @@ export const {
       bp1: '(min-width: 480px)',
     },
     utils: {
-        text: (value) => ({
-            fontSize: value,
-            lineHeight: value,
-        }),
-
         // paddings
         p: (value) => ({
             padding: value,

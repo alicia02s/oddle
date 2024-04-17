@@ -10,7 +10,7 @@ import {
 import App from './App.jsx'
 import LandingPage from './LandingPage.jsx'
 import Game from './Game.jsx'
-import GameFrontEnd from './pages/GameFrontEnd.jsx';
+import GameFrontEnd from './pages/GameFrontEnd/index.jsx';
 
 
 import './Style.css'

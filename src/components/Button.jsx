@@ -1,52 +1,73 @@
 import React from 'react'
-import { styled } from '../../../stitches.config';
+import { styled } from './../stitches.config';
 
 function Button({
     buttonFunction,
     textInButton,
-    specifiClassName,
-    bgColor,
-    textColor,
     type,
+    size,
   }) {
-    const StyledButton = styled('button', {
-        display: "flex",
-        flexDirection: "flex-row",
-        alignItems: "items-center",
-        justifyContent: "justify-center",
-        px: "$xl",
-        py: "$lg",
-        borderRadius: "$rounded_md",
-        text: "$sm",
-        fontWeight: "$bold",
 
+  const StyledButton = styled('button', {
+    display: "flex",
+    justifyContent: "center",
+    // px: "$xxxl",
+    py: "$xxxl",
+    minWidth: "16rem",
+    borderRadius: "$rounded_lg",
 
-        backgroundImage: "linear-gradient(to bottom right, #ff5f69, #68e1fd)",
-        color:"black",
+    fontFamily: "sans-serif",
+    fontSize: "$lg",
+    fontWeight: "$bold",
+    color: "white",
 
-        variants: {
+    variants: {
+      type: {
+        selected: {
+          backgroundColor: '#9593FF',
+          color: 'white',
+          '&:hover': {
+            backgroundColor: 'darkviolet',
+          },
         },
-
-        '&:hover': {
-            padding: '$xxl'
+        normal: {
+          backgroundColor: '#ECECEC',
+          color: 'black',
+          '&:hover': {
+            backgroundColor: 'lightgray',
+          },
         },
-
-        '&:focus-visible': {
-            outlineStyle: 'solid',
-            outlineWidth: '2px',
-            outlineOffset: '2px',
+      },
+      size: {
+        game: {
+          
         },
-    });
+        else: {
+          
+        },
+      },
+    },
+
+    // '&:hover': {
+    //     padding: '$xxl',
+    // },
+
+    '&:focus': {
+      outline: 'none',
+        // outlineStyle: 'solid',
+        // outlineWidth: '2px',
+        // outlineOffset: '2px',
+    },
+  });
 
   return (
     <StyledButton       
         type={type}
+        size={size}
         onClick={buttonFunction}
-        css={{
-            background: bgColor
-            }}
-        className={`${specifiClassName}`}> 
-        <p className={`text-lg ${textColor}`}> {textInButton} </p>
+        style={{margin: 'auto'}}
+    > 
+        {textInButton}
     </StyledButton>
   )
 }
