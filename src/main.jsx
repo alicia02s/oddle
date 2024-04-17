@@ -10,6 +10,8 @@ import {
 import App from './App.jsx'
 import LandingPage from './LandingPage.jsx'
 import Game from './Game.jsx'
+import GameFrontEnd from './pages/GameFrontEnd.jsx';
+
 
 import './Style.css'
 
@@ -20,6 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route exact path='/' element={<App />} />
         <Route exact path='/LandingPage' element={<LandingPage />} />
         <Route exact path='/Game' element={<Game />} />
+        <Route exact path='/GameFrontEnd' element={<GameFrontEnd />} />
       </Routes>
     </Router>
     
