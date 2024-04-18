@@ -13,14 +13,15 @@ function Game() {
     const [oddle, setOddle] = useState("");
     const [rightWrong, setRightWrong] = useState(0) // 0 do nothing, 1 correct, 2 wrong
     const [started, setStarted] = useState(false)
+    const [selected, setSelected] = useState(-1)
 
     const cards = allWords.map((word, index) => (
         <Card
           key={index} // It's important to include a unique key when mapping
           card_word={word}
           isOddle={word == oddle}
-          onClick={() => checkAnswer(word)}
-          type="normal" 
+          onClick={() => checkAnswer(word, index)}
+          type= {(index === selected) ? 'selected' : 'normal'}
           size="game"
         />
       ));
@@ -39,6 +40,7 @@ function Game() {
     // }
 
     function shuffleCards(words) {
+        setSelected(-1)
         let array = [...words]; // Copy the words array to shuffle
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -55,7 +57,9 @@ function Game() {
         setStarted(true)
     }
 
-    function checkAnswer(word){
+    function checkAnswer(word, index){
+        setSelected(index)
+        
         if (word === oddle) {
             setRightWrong(1)
         }
