@@ -1,0 +1,21 @@
+*{
+}
+
+.card {
+    background-color: #ECECEC;
+    height: 80px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+}
+
+.card_font{
+    font-size: 50px;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px; /* Adjust the gap size as needed */
+    padding: 20px; /* Adjust the padding as needed */
+  }
