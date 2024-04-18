@@ -41,6 +41,11 @@
     font-size: 30px;
 }
 
+.final-level{
+    display: flex;
+    justify-content: center;
+}
+
 .instructions{
     display:flex;
     justify-content: center;

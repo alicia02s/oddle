@@ -157,6 +157,9 @@ function Game() {
                     <h2>{rightWrong === 1 && "You got it right!"}</h2>
                     <h2>{rightWrong === 2 && "You got it wrong"}</h2>
                 </div>
+                <div className = "final-level">
+                       <h2>{rightWrong === 2 && `Final Level: ${numSeedWords - 1}`}</h2> 
+                    </div>
                 <div className = "next-level-button">
                     {rightWrong === 1 && <button onClick = {nextLevel}> Next Level</button>}
                 </div>       
