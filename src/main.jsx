@@ -8,9 +8,9 @@ import {
 
 
 import App from './App.jsx'
-import LandingPage from './LandingPage.jsx'
-import Game from './Game.jsx'
-import GameFrontEnd from './pages/GameFrontEnd/index.jsx';
+import LandingPage from './pages/LandingPage/LandingPage.jsx'
+import Game from './pages/Game/Game.jsx'
+import GameFrontEnd from './pages/GameFrontEnd/GameFrontEnd.jsx';
 
 
 import './Style.css'

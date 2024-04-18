@@ -1,5 +1,5 @@
 import React from 'react'
-import './style.css'
+import './GameFrontEnd.css'
 
 // import oddleLogo from './../public/oddle.svg'
 import QuestionMark from '../../svg/QuestionMark'

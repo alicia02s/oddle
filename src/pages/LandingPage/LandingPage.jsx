@@ -1,7 +1,7 @@
 import React from 'react'
 import './LandingPage.css'
 
-import oddleLogo from './../public/oddle.svg'
+import oddleLogo from './../../../public/oddle.svg'
 
 function LandingPage() {
   return (
