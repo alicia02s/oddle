@@ -139,15 +139,30 @@ function Game() {
 
     return (
         <div>
-            <h1>Oddle</h1>
-            <h2>There are {numSeedWords - 1} groups of 3 words that relate to each other. Select the odd one out.</h2>
-            {!started && <button onClick={nextLevel}>Start</button>}
+            <div className = "title">
+                <h1>Oddle</h1>
+            </div>
+            <div className = "instructions">
+                <h2>There are {numSeedWords - 1} groups of 3 words that relate to each other. Select the odd one out.</h2>
+            </div>
+            <div className = "start_button">
+                {!started ? <button onClick={nextLevel}>Start</button> : <button onClick = {() => shuffleCards(allWords)}>Shuffle</button>}
+            </div>
+            
             <div className="card-container">
                 {cards}    
             </div>
-            <h2>{rightWrong === 1 && "You got it right!"}</h2>
-            <h2>{rightWrong === 2 && "You got it wrong"}</h2>
-            {rightWrong === 1 && <button onClick = {nextLevel}> Next Level</button>}
+            <div>
+                <div className = "right-wrong">
+                    <h2>{rightWrong === 1 && "You got it right!"}</h2>
+                    <h2>{rightWrong === 2 && "You got it wrong"}</h2>
+                </div>
+                <div className = "next-level-button">
+                    {rightWrong === 1 && <button onClick = {nextLevel}> Next Level</button>}
+                </div>       
+                
+            </div>
+            
         </div>
     );
 }
