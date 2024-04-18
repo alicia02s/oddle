@@ -27,3 +27,12 @@
     display: flex;
     justify-content: center;
 }
+
+.seperator {
+    background-color: black;
+    color: white;
+    text-align: center;
+    height: 2rem;
+    align-content: center;
+    margin: 1rem 0;
+}

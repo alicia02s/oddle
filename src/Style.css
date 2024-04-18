@@ -1,7 +1,7 @@
 *{
 }
 
-.card {
+/* .card {
     background-color: #ECECEC;
     height: 100px;
     width: 250px;
@@ -17,7 +17,7 @@
 
 .card_font{
     font-size: 50px;
-}
+} */
 
 .card-container {
     display: grid;
@@ -26,7 +26,7 @@
     padding: 20px; /* Adjust the padding as needed */
   }
 
-  
+
 /* .right-wrong{
     display: flex;
     justify-content: center;
