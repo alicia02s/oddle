@@ -1,0 +1,58 @@
+*{
+}
+
+/* .card {
+    background-color: #ECECEC;
+    height: 100px;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.card:hover{
+    background-color: aqua;
+}
+
+.card_font{
+    font-size: 50px;
+} */
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px; /* Adjust the gap size as needed */
+    padding: 20px; /* Adjust the padding as needed */
+  }
+
+
+/* .right-wrong{
+    display: flex;
+    justify-content: center;
+}
+.next-level-button{
+    display: flex;
+    justify-content: center;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.final-level{
+    display: flex;
+    justify-content: center;
+}
+
+.instructions{
+    display:flex;
+    justify-content: center;
+}
+
+.start_button{
+    display: flex;
+    justify-content: center;
+} */
