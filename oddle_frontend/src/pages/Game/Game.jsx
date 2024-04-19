@@ -3,6 +3,7 @@ import Card from "../../components/Card.jsx"
 // import oddleLogo from './../public/oddle.svg'
 import QuestionMark from '../../svg/QuestionMark'
 import SettingsIcon from '../../svg/SettingsIcon'
+import Button from "../../components/Button.jsx"
 
 import './Game.css'
 
@@ -149,34 +150,33 @@ function Game() {
     }
 
     return (
-        <div>
+        <div className="GameFrontEndDiv">
             <div className='Header'>
                 <div className='HeaderMenuLeft'>
                 <h3>Leaderboard</h3>
                 <h3>Level 1</h3>
                 </div>
-
                 <div className='HeaderTitleMenu'>
-                <h2 className='HeaderTitle'>Oddle
-                    <div className='HeaderMenus'>
-                    <QuestionMark color="#6B6B6B" width="36" height="36" />
-                    <SettingsIcon color="#6B6B6B" width="36" height="36" />
-                    </div>
-                </h2>
-                
+                    <h2 className='HeaderTitle'>Oddle
+                        <div className='HeaderMenus'>
+                        <QuestionMark color="#6B6B6B" width="36" height="36" />
+                        <SettingsIcon color="#6B6B6B" width="36" height="36" />
+                        </div>
+                    </h2>
                 </div>
-                
-
             </div>
 
             <div className='Game'>
                 <h3 className='TaskDescription'>There are {numSeedWords - 1} groups of 3 words that relate to each other. Select the odd one out.</h3>
                 <div className = "start_button">
-                    {!started ? <button onClick={nextLevel}>Start</button> : <button onClick = {() => shuffleCards(allWords)}>Shuffle</button>}
+                    {!started && <Button onClick={nextLevel} textInButton="Start" type="normal" size="normal" />}
                 </div>
                 <div className="card-container">
                     {cards}    
                 </div>
+
+                
+                {(started && (rightWrong === 0)) && <Button onClick = {() => shuffleCards(allWords)} textInButton="Shuffle" type="normal" size="normal" />}
                 <div>
                     <div className = "right-wrong">
                         <h2>{rightWrong === 1 && "You got it right!"}</h2>
@@ -186,45 +186,10 @@ function Game() {
                         <h2>{rightWrong === 2 && `Final Level: ${numSeedWords - 1}`}</h2> 
                         </div>
                     <div className = "next-level-button">
-                        {rightWrong === 1 && <button onClick = {nextLevel}> Next Level</button>}
+                        {rightWrong === 1 && <Button onClick = {nextLevel} textInButton="Next Level" type="normal" size="normal" />}
                     </div>       
                 </div>
             </div>
-
-
-
-
-            <div className="seperator">
-                Above is CSS design. Below 
-            </div>
-
-            <div className = "title">
-                <h1>Oddle</h1>
-            </div>
-            <div className = "instructions">
-                <h2>There are {numSeedWords - 1} groups of 3 words that relate to each other. Select the odd one out.</h2>
-            </div>
-            <div className = "start_button">
-                {!started ? <button onClick={nextLevel}>Start</button> : <button onClick = {() => shuffleCards(allWords)}>Shuffle</button>}
-            </div>
-            
-            <div className="card-container">
-                {cards}    
-            </div>
-            <div>
-                <div className = "right-wrong">
-                    <h2>{rightWrong === 1 && "You got it right!"}</h2>
-                    <h2>{rightWrong === 2 && "You got it wrong"}</h2>
-                </div>
-                <div className = "final-level">
-                       <h2>{rightWrong === 2 && `Final Level: ${numSeedWords - 1}`}</h2> 
-                    </div>
-                <div className = "next-level-button">
-                    {rightWrong === 1 && <button onClick = {nextLevel}> Next Level</button>}
-                </div>       
-                
-            </div>
-            
         </div>
     );
 }

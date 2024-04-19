@@ -39,6 +39,7 @@ export const {
         tight: '1.25',
       },
       fontWeights: {
+        semibold: '650',
         bold: '700',
       },
       sizes: {

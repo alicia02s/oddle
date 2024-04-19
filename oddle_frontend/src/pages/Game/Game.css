@@ -28,11 +28,47 @@
     justify-content: center;
 }
 
-.seperator {
-    background-color: black;
-    color: white;
+.Game {
     text-align: center;
-    height: 2rem;
-    align-content: center;
-    margin: 1rem 0;
+    padding-top: 2rem;
+}
+
+.GameFrontEndDiv {
+    margin: 0 4rem;
+    height: 100vh;
+}
+.Header {
+    display: block;
+}
+
+.HeaderTitleMenu {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+}
+.HeaderTitle {
+    display: block;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+
+    color: #9593FF;
+    font-family: sans-serif;
+    font-size: xxx-large;
+    font-weight: bolder;
+    margin: 0;
+    
+}
+
+.HeaderMenus {
+    display: flex;
+    position: absolute;
+    left: 16rem;
+    top: 0.5rem;
+}
+
+.Options {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }

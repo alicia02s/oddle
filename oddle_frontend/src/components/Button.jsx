@@ -1,25 +1,21 @@
 import React from 'react'
 import { styled } from './../stitches.config';
+import {Link } from "react-router-dom";
 
 function Button({
-    buttonFunction,
+    onClick,
     textInButton,
     type,
     size,
+    linkTo,
   }) {
 
   const StyledButton = styled('button', {
     display: "flex",
     justifyContent: "center",
-    // px: "$xxxl",
-    py: "$xxxl",
-    minWidth: "16rem",
-    borderRadius: "$rounded_lg",
-
     fontFamily: "sans-serif",
-    fontSize: "$lg",
-    fontWeight: "$bold",
-    color: "white",
+
+    color: "white",    
 
     variants: {
       type: {
@@ -40,10 +36,18 @@ function Button({
       },
       size: {
         game: {
-          
+          py: "$xxxl",
+          minWidth: "16rem",
+          borderRadius: "$rounded_lg",
+          fontSize: "$lg",
+          fontWeight: "$bold",
         },
-        else: {
-          
+        normal: {
+          py: "$lg",
+          minWidth: "8rem",
+          borderRadius: "$rounded_md",
+          fontSize: "$sm",
+          fontWeight: "normal",
         },
       },
     },
@@ -60,16 +64,33 @@ function Button({
     },
   });
 
-  return (
-    <StyledButton       
-        type={type}
-        size={size}
-        onClick={buttonFunction}
-        style={{margin: 'auto'}}
-    > 
+  if (linkTo) {
+    return (
+      <Link to={linkTo}>
+        <StyledButton       
+                type={type}
+                size={size}
+                onClick={onClick}
+                style={{margin: 'auto'}}
+            > 
+          {textInButton}
+        </StyledButton>
+      </Link>
+      
+    )
+  } else {
+    return (
+      <StyledButton       
+              type={type}
+              size={size}
+              onClick={onClick}
+              style={{margin: 'auto'}}
+          > 
         {textInButton}
-    </StyledButton>
-  )
+      </StyledButton>
+      
+    )
+  }
 }
 
 export default Button
