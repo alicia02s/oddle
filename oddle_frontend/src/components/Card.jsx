@@ -34,6 +34,7 @@ function Card({
         fontSize: "$lg",
         fontWeight: "$bold",
         color: "white",
+        border: "none",
 
         variants: {
         type: {

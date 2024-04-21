@@ -13,7 +13,7 @@ import Game from './pages/Game/Game.jsx'
 import './Style.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Router>
       <Routes>
         <Route exact path='/' element={<LandingPage />} />
@@ -21,5 +21,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       </Routes>
     </Router>
     
-  </React.StrictMode>,
+  // </React.StrictMode> 
 )

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../../components/Card.jsx"
 // import oddleLogo from './../public/oddle.svg'
 import QuestionMark from '../../svg/QuestionMark'
@@ -7,7 +7,7 @@ import Button from "../../components/Button.jsx"
 
 import './Game.css'
 
-function Game() {
+function Game(begin) {
     const [numSeedWords, setNumSeedWords] = useState(1);
     const [seedWords, setSeedWords] = useState([]);
     const [allWords, setAllWords] = useState([]);
@@ -16,16 +16,23 @@ function Game() {
     const [started, setStarted] = useState(false)
     const [selected, setSelected] = useState(-1)
 
-    const cards = allWords.map((word, index) => (
-        <Card
-          key={index} // It's important to include a unique key when mapping
-          card_word={word}
-          isOddle={word == oddle}
-          onClick={() => checkAnswer(word, index)}
-          type= {(index === selected) ? 'selected' : 'normal'}
-          size="game"
-        />
-      ));
+    
+     const cards = allWords.map((word, index) => (
+            <Card
+              key={index} // It's important to include a unique key when mapping
+              card_word={word}
+              isOddle={word == oddle}
+              onClick={() => checkAnswer(word, index)}
+              type= {(index === selected) ? 'selected' : 'normal'}
+              size="game"
+            />
+          ))
+
+    useEffect(() => {
+        nextLevel()
+    }, [])
+    
+
     
     function getRandomInt(n) {
         return Math.floor(Math.random() * (n + 1));
@@ -55,7 +62,7 @@ function Game() {
         setRightWrong(0)
         getAllWords()
         // shuffleCards()
-        setStarted(true)
+        // setStarted(true)
     }
 
     function checkAnswer(word, index){

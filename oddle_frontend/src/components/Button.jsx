@@ -14,6 +14,7 @@ function Button({
     display: "flex",
     justifyContent: "center",
     fontFamily: "sans-serif",
+    border: "none",
 
     color: "white",    
 
@@ -66,7 +67,7 @@ function Button({
 
   if (linkTo) {
     return (
-      <Link to={linkTo}>
+      <Link to={linkTo} style={{ textDecoration: "none"}}>
         <StyledButton       
                 type={type}
                 size={size}
