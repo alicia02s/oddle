@@ -1,13 +1,15 @@
 import React from 'react'
 import { styled } from './../stitches.config';
 import {Link } from "react-router-dom";
+import Placeholder from 'react-bootstrap/Placeholder';
 
 function Button({
     onClick,
     textInButton,
-    type,
+    color,
     size,
     linkTo,
+    placeHolder,
   }) {
 
   const StyledButton = styled('button', {
@@ -19,7 +21,7 @@ function Button({
     color: "white",    
 
     variants: {
-      type: {
+      color: {
         selected: {
           backgroundColor: '#9593FF',
           color: 'white',
@@ -69,10 +71,10 @@ function Button({
     return (
       <Link to={linkTo} style={{ textDecoration: "none"}}>
         <StyledButton       
-                type={type}
-                size={size}
-                onClick={onClick}
-                style={{margin: 'auto'}}
+            color={color}
+            size={size}
+            onClick={onClick}
+            // style={{margin: 'auto'}}
             > 
           {textInButton}
         </StyledButton>
@@ -82,12 +84,21 @@ function Button({
   } else {
     return (
       <StyledButton       
-              type={type}
-              size={size}
-              onClick={onClick}
-              style={{margin: 'auto'}}
+          color={color}
+          size={size}
+          onClick={onClick}
+          // style={{margin: 'auto'}}
           > 
-        {textInButton}
+        {!placeHolder && textInButton}
+        {placeHolder && 
+          <Placeholder 
+          style={{
+            width: "75%",
+            display: "inline-block",
+            minHeight: "1em",
+            opacity: "1",
+            backgroundColor: "#DDD8D8"}} animation="wave" />}
+        
       </StyledButton>
       
     )

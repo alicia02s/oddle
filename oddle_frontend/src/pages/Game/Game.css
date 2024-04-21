@@ -23,18 +23,16 @@
     justify-content: center;
 }
 
-.start_button{
-    display: flex;
-    justify-content: center;
-}
-
 .Game {
     text-align: center;
     padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .GameFrontEndDiv {
-    margin: 0 16rem;
+    margin: 0 rem;
     height: 100vh;
 }
 .Header {

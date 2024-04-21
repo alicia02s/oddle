@@ -13,20 +13,35 @@ function Game(begin) {
     const [allWords, setAllWords] = useState([]);
     const [oddle, setOddle] = useState("");
     const [rightWrong, setRightWrong] = useState(0) // 0 do nothing, 1 correct, 2 wrong
-    const [started, setStarted] = useState(false)
-    const [selected, setSelected] = useState(-1)
+    const [loaded, setLoaded] = useState(false)
+    const [selected, setSelected] = useState(-1)    // value is index of the button that was selected (default is -1, i.e. no button selected)
 
-    
-     const cards = allWords.map((word, index) => (
+    let cards = []
+
+    if (loaded) {
+        cards = allWords.map((word, index) => (
             <Card
-              key={index} // It's important to include a unique key when mapping
-              card_word={word}
-              isOddle={word == oddle}
-              onClick={() => checkAnswer(word, index)}
-              type= {(index === selected) ? 'selected' : 'normal'}
-              size="game"
+                key={index} // It's important to include a unique key when mapping
+                card_word={word}
+                isOddle={word == oddle}
+                onClick={() => checkAnswer(word, index)}
+                type= {(index === selected) ? 'selected' : 'normal'}
+                size="game"
             />
-          ))
+            ))
+    } else {
+        cards = []
+        for (let i = 0; i < (numSeedWords-1)*4; i++) {
+            cards.push(         
+                <Card
+                key={i} // It's important to include a unique key when mapping
+                type= {'normal'}
+                size="game"
+                placeHolder
+            />)
+        }
+    }
+ 
 
     useEffect(() => {
         nextLevel()
@@ -55,9 +70,11 @@ function Game(begin) {
             [array[i], array[j]] = [array[j], array[i]]; // Swap elements
         }
         setAllWords(array); // Set the shuffled array back to state
+        setLoaded(true)
     }
 
     function nextLevel(){
+        setLoaded(false)
         setNumSeedWords(oldNum => oldNum + 1)
         setRightWrong(0)
         getAllWords()
@@ -175,15 +192,13 @@ function Game(begin) {
 
             <div className='Game'>
                 <h3 className='TaskDescription'>There are {numSeedWords - 1} groups of 3 words that relate to each other. Select the odd one out.</h3>
-                <div className = "start_button">
-                    {!started && <Button onClick={nextLevel} textInButton="Start" type="normal" size="normal" />}
-                </div>
                 <div className="card-container">
                     {cards}    
                 </div>
 
                 
-                {(started && (rightWrong === 0)) && <Button onClick = {() => shuffleCards(allWords)} textInButton="Shuffle" type="normal" size="normal" />}
+                {loaded && (rightWrong === 0) && <Button onClick = {() => shuffleCards(allWords)} textInButton="Shuffle" color="normal" size="normal" />}
+
                 <div>
                     <div className = "right-wrong">
                         <h2>{rightWrong === 1 && "You got it right!"}</h2>
@@ -193,7 +208,7 @@ function Game(begin) {
                         <h2>{rightWrong === 2 && `Final Level: ${numSeedWords - 1}`}</h2> 
                         </div>
                     <div className = "next-level-button">
-                        {rightWrong === 1 && <Button onClick = {nextLevel} textInButton="Next Level" type="normal" size="normal" />}
+                        {rightWrong === 1 && <Button onClick = {nextLevel} textInButton="Next Level" color="normal" size="normal" />}
                     </div>       
                 </div>
             </div>

@@ -9,7 +9,7 @@ import {
 import LandingPage from './pages/LandingPage/LandingPage.jsx'
 import Game from './pages/Game/Game.jsx'
 
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './Style.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(

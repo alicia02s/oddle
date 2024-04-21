@@ -10,7 +10,7 @@ function LandingPage() {
       <img src={oddleLogo} className="logo react" alt="React logo"/>
       <h1 className='OddleTitle'>Oddle</h1>
       <h2>Given X words select the odd word out.</h2>
-      <Button textInButton="Play Oddle" type="normal" size="normal" linkTo="/Game" />
+      <Button textInButton="Play Oddle" color="normal" size="normal" linkTo="/Game" />
 
       <h4>April 11, 2024</h4>
       <h4>No. 0</h4>
