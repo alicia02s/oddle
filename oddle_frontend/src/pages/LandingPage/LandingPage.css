@@ -24,11 +24,12 @@
 }
 
 .wavy span {
+    font-family: "Special Elite", system-ui;
     position: relative;
     display: inline-block;
     color: #9593FF;
     font-size: 4em;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     animation: animate 1s ease-in-out infinite;
     animation-delay: calc(0.1s * var(--i));
     font-weight: bold;
@@ -48,4 +49,9 @@
     {
         transform: translateY(0px);
     }
+}
+
+/* changing the cursor to :) */
+.button-emoji {
+    cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png"), auto;
 }
