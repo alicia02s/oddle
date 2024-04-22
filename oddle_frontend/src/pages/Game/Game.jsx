@@ -177,9 +177,10 @@ function Game(begin) {
         <div className="GameFrontEndDiv">
             <div className='Header'>
                 <div className='HeaderMenuLeft'>
-                <h3>Leaderboard</h3>
-                <h3>Level 1</h3>
+                    <h3>Leaderboard</h3>
+                    <h3>Level 1</h3>
                 </div>
+                
                 <div className='HeaderTitleMenu'>
                     <h2 className='HeaderTitle'>Oddle
                         <div className='HeaderMenus'>

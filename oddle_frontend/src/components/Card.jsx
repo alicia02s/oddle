@@ -48,7 +48,7 @@ function Card({
                 },
             },
             normal: {
-                backgroundColor: '#ECECEC',
+                backgroundColor: '#a9a9a9',
                 color: 'black',
                 '&:hover': {
                     backgroundColor: 'lightgray',
@@ -90,7 +90,7 @@ function Card({
             display: "inline-block",
             minHeight: "1em",
             opacity: "1",
-            backgroundColor: "#DDD8D8"}} animation="wave" size="lg" />}
+            backgroundColor: "#DDD8D8"}} animation="glow" size="lg" />}
         </StyledButton>
     )
 }
