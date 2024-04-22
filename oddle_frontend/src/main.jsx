@@ -6,25 +6,20 @@ import {
   Route,
 } from "react-router-dom";
 
-
-import App from './App.jsx'
 import LandingPage from './pages/LandingPage/LandingPage.jsx'
 import Game from './pages/Game/Game.jsx'
-import GameFrontEnd from './pages/GameFrontEnd/GameFrontEnd.jsx';
 
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './Style.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Router>
       <Routes>
-        <Route exact path='/' element={<App />} />
-        <Route exact path='/LandingPage' element={<LandingPage />} />
+        <Route exact path='/' element={<LandingPage />} />
         <Route exact path='/Game' element={<Game />} />
-        <Route exact path='/GameFrontEnd' element={<GameFrontEnd />} />
       </Routes>
     </Router>
     
-  </React.StrictMode>,
+  // </React.StrictMode> 
 )

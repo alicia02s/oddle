@@ -1,5 +1,6 @@
 import React from "react"
 import { styled } from './../stitches.config';
+import Placeholder from 'react-bootstrap/Placeholder';
 
 // function Card(props){
 //     const oddle = "oddle"
@@ -19,6 +20,7 @@ function Card({
     onClick,
     type,
     size,
+    placeHolder
   }) {
     const oddle = "oddle"
     
@@ -34,6 +36,7 @@ function Card({
         fontSize: "$lg",
         fontWeight: "$bold",
         color: "white",
+        border: "none",
 
         variants: {
         type: {
@@ -79,10 +82,15 @@ function Card({
             type={type}
             size={size}
             onClick={onClick}
-            style={{margin: 'auto'}}
         > 
-            {card_word}
-            {/* <h2>{isOddle && oddle}</h2>  */}
+            {!placeHolder && card_word}
+            {placeHolder && <Placeholder 
+          style={{
+            width: "75%",
+            display: "inline-block",
+            minHeight: "1em",
+            opacity: "1",
+            backgroundColor: "#DDD8D8"}} animation="wave" size="lg" />}
         </StyledButton>
     )
 }
