@@ -20,9 +20,11 @@ function LandingPage() {
         <span style={{ '--i': '5'}}>e</span>
         {/* <span style={{ '--i': '6'}}>!</span> */}
       </div>
-      <h2>Given X words, select the odd word out.</h2>
+      <div className='description'>
+        <p className='desc'>Given X words, select the odd word out.</p>
+      </div>
       <Button textInButton="Play Oddle" color="normal" size="normal" linkTo="/Game" />
-
+      <br></br>
       <h4>April 11, 2024</h4>
       <h4>No. 0</h4>
       <h4 className="button-emoji">Edited by Rahl</h4>
