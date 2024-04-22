@@ -8,8 +8,15 @@ function LandingPage() {
   return (
     <div className='LandingPageDiv'>
       <img src={oddleLogo} className="logo react" alt="React logo"/>
-      <h1 className='OddleTitle'>Oddle</h1>
-      <h2>Given X words select the odd word out.</h2>
+      <div className='wavy'>
+        <span style={{ '--i': '1'}}>O</span>
+        <span style={{ '--i': '2'}}>D</span>
+        <span style={{ '--i': '3'}}>D</span>
+        <span style={{ '--i': '4'}}>L</span>
+        <span style={{ '--i': '5'}}>E</span>
+        <span style={{ '--i': '6'}}>!</span>
+      </div>
+      <h2>Given X words, select the word out.</h2>
       <Button textInButton="Play Oddle" color="normal" size="normal" linkTo="/Game" />
 
       <h4>April 11, 2024</h4>
