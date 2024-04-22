@@ -30,7 +30,7 @@ function Button({
           },
         },
         normal: {
-          backgroundColor: '#ECECEC',
+          backgroundColor: '#a9a9a9',
           color: 'black',
           '&:hover': {
             backgroundColor: 'lightgray',
