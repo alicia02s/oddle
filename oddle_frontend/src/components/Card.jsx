@@ -48,7 +48,7 @@ function Card({
                 },
             },
             normal: {
-                backgroundColor: '#a9a9a9',
+                backgroundColor: '#ECECEC',
                 color: 'black',
                 '&:hover': {
                     backgroundColor: 'lightgray',
