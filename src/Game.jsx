@@ -1,53 +1,22 @@
-import React, { useEffect, useState } from "react";
-import Card from "../../components/Card.jsx"
-// import oddleLogo from './../public/oddle.svg'
-import QuestionMark from '../../svg/QuestionMark'
-import SettingsIcon from '../../svg/SettingsIcon'
-import Button from "../../components/Button.jsx"
+import React, { useState } from "react";
+import Card from "./Card.jsx"
 
-import './Game.css'
-
-function Game(begin) {
+function Game() {
     const [numSeedWords, setNumSeedWords] = useState(1);
     const [seedWords, setSeedWords] = useState([]);
     const [allWords, setAllWords] = useState([]);
     const [oddle, setOddle] = useState("");
     const [rightWrong, setRightWrong] = useState(0) // 0 do nothing, 1 correct, 2 wrong
-    const [loaded, setLoaded] = useState(false)
-    const [selected, setSelected] = useState(-1)    // value is index of the button that was selected (default is -1, i.e. no button selected)
+    const [started, setStarted] = useState(false)
 
-    let cards = []
-
-    if (loaded) {
-        cards = allWords.map((word, index) => (
-            <Card
-                key={index} // It's important to include a unique key when mapping
-                card_word={word}
-                isOddle={word == oddle}
-                onClick={() => checkAnswer(word, index)}
-                type= {(index === selected) ? 'selected' : 'normal'}
-                size="game"
-            />
-            ))
-    } else {
-        cards = []
-        for (let i = 0; i < (numSeedWords-1)*4; i++) {
-            cards.push(         
-                <Card
-                key={i} // It's important to include a unique key when mapping
-                type= {'normal'}
-                size="game"
-                placeHolder
-            />)
-        }
-    }
- 
-
-    useEffect(() => {
-        nextLevel()
-    }, [])
-    
-
+    const cards = allWords.map((word, index) => (
+        <Card
+          key={index} // It's important to include a unique key when mapping
+          card_word={word}
+          isOddle={word == oddle}
+          onClick={() => checkAnswer(word)}
+        />
+      ));
     
     function getRandomInt(n) {
         return Math.floor(Math.random() * (n + 1));
@@ -63,28 +32,23 @@ function Game(begin) {
     // }
 
     function shuffleCards(words) {
-        setSelected(-1)
         let array = [...words]; // Copy the words array to shuffle
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [array[i], array[j]] = [array[j], array[i]]; // Swap elements
         }
         setAllWords(array); // Set the shuffled array back to state
-        setLoaded(true)
     }
 
     function nextLevel(){
-        setLoaded(false)
         setNumSeedWords(oldNum => oldNum + 1)
         setRightWrong(0)
         getAllWords()
         // shuffleCards()
-        // setStarted(true)
+        setStarted(true)
     }
 
-    function checkAnswer(word, index){
-        setSelected(index)
-        
+    function checkAnswer(word){
         if (word === oddle) {
             setRightWrong(1)
         }
@@ -174,45 +138,34 @@ function Game(begin) {
     }
 
     return (
-        <div className="GameFrontEndDiv">
-            <div className='Header'>
-                <div className='HeaderMenuLeft'>
-                    <h3>Leaderboard</h3>
-                    <h3>Level {numSeedWords - 1}</h3>
-                </div>
-                
-                <div className='HeaderTitleMenu'>
-                    <h2 className='HeaderTitle'>Oddle
-                        <div className='HeaderMenus'>
-                        <QuestionMark color="#6B6B6B" width="36" height="36" />
-                        <SettingsIcon color="#6B6B6B" width="36" height="36" />
-                        </div>
-                    </h2>
-                </div>
+        <div>
+            <div className = "title">
+                <h1>Oddle</h1>
             </div>
-
-            <div className='Game'>
-                <h3 className='TaskDescription'>There are {numSeedWords - 1} groups of 3 words that relate to each other. Select the odd one out.</h3>
-                <div className="card-container">
-                    {cards}    
+            <div className = "instructions">
+                <h2>There are {numSeedWords - 1} groups of 3 words that relate to each other. Select the odd one out.</h2>
+            </div>
+            <div className = "start_button">
+                {!started ? <button onClick={nextLevel}>Start</button> : <button onClick = {() => shuffleCards(allWords)}>Shuffle</button>}
+            </div>
+            
+            <div className="card-container">
+                {cards}    
+            </div>
+            <div>
+                <div className = "right-wrong">
+                    <h2>{rightWrong === 1 && "You got it right!"}</h2>
+                    <h2>{rightWrong === 2 && "You got it wrong"}</h2>
                 </div>
-
-                
-                {loaded && (rightWrong === 0) && <Button onClick = {() => shuffleCards(allWords)} textInButton="Shuffle" color="normal" size="normal" />}
-
-                <div>
-                    <div className = "right-wrong">
-                        <h2>{rightWrong === 1 && "You got it right!"}</h2>
-                        <h2>{rightWrong === 2 && "You got it wrong"}</h2>
+                <div className = "final-level">
+                       <h2>{rightWrong === 2 && `Final Level: ${numSeedWords - 1}`}</h2> 
                     </div>
-                    <div className = "final-level">
-                        <h2>{rightWrong === 2 && `Final Level: ${numSeedWords - 1}`}</h2> 
-                        </div>
-                    <div className = "next-level-button">
-                        {rightWrong === 1 && <Button onClick = {nextLevel} textInButton="Next Level" color="normal" size="normal" />}
-                    </div>       
-                </div>
+                <div className = "next-level-button">
+                    {rightWrong === 1 && <button onClick = {nextLevel}> Next Level</button>}
+                </div>       
+                
             </div>
+            
         </div>
     );
 }
