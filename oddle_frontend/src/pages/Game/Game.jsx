@@ -4,6 +4,7 @@ import Card from "../../components/Card.jsx"
 import QuestionMark from '../../svg/QuestionMark'
 import SettingsIcon from '../../svg/SettingsIcon'
 import Button from "../../components/Button.jsx"
+import Text from "../../components/Text.jsx"
 
 import './Game.css'
 
@@ -177,9 +178,10 @@ function Game(begin) {
         <div className="GameFrontEndDiv">
             <div className='Header'>
                 <div className='HeaderMenuLeft'>
-                <h3>Leaderboard</h3>
-                <h3>Level 1</h3>
+                    <Text text="Leaderboard" />
+                    <h3>Level 1</h3>
                 </div>
+                
                 <div className='HeaderTitleMenu'>
                     <h2 className='HeaderTitle'>Oddle
                         <div className='HeaderMenus'>

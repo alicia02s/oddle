@@ -66,7 +66,10 @@
     top: 0.5rem;
 }
 
-.Options {
+
+.card-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-}
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px; /* Adjust the gap size as needed */
+    padding: 20px; /* Adjust the padding as needed */
+  }
