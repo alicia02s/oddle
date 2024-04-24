@@ -18,7 +18,7 @@ let db = new sqlite3.Database('./oddlebase', (err) => {
 });
 
 // create users table if it doesn't exist
-db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, email TEXT NOT NULL UNIQUE, password TEXT NOT NULL)', (err) => {
+db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL UNIQUE, email TEXT NOT NULL UNIQUE, password TEXT NOT NULL, games_played INTEGER, games_won INTEGER)', (err) => {
   if (err) {
     return console.error(err.message);
   }
@@ -33,17 +33,25 @@ db.run('CREATE TABLE IF NOT EXISTS session_tokens (id INTEGER PRIMARY KEY AUTOIN
   console.log('Created session tokens table.');
 });
 
-// allow log in with email and password
+// create daily stats table for users and leaderboard
+db.run('CREATE TABLE IF NOT EXISTS daily_stats (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, date TEXT NOT NULL, rounds_played INTEGER)', (err) => {
+  if (err) {
+    return console.error(err.message);
+  }
+  console.log('Created daily stats table.');
+});
+
+// allow log in with username and password
 app.post('/login', (req, res) => {
-  const email = req.query.email;
+  const username = req.query.username;
   const password = req.query.password;
-  const sql = 'SELECT * FROM users WHERE email = ? AND password = ?';
-  db.get(sql, [email, password], (err, row) => {
+  const sql = 'SELECT * FROM users WHERE username = ? AND password = ?';
+  db.get(sql, [username, password], (err, row) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
     if (!row) {
-      return res.status(401).json({ error: 'Incorrect email or password.' });
+      return res.status(401).json({ error: 'Incorrect username or password.' });
     }
     const token = Math.random().toString(36).substr(2);
     const sql = 'INSERT INTO session_tokens (user_id, token) VALUES (?, ?)';
@@ -58,11 +66,14 @@ app.post('/login', (req, res) => {
 
 // allow sign up with name, email, and password
 app.post('/signup', (req, res) => {
-  const name = req.query.name;
+  const username = req.query.username;
   const email = req.query.email;
   const password = req.query.password;
-  const sql = 'INSERT INTO users (name, email, password) VALUES (?, ?, ?)';
-  db.run(sql, [name, email, password], (err) => {
+  const games_played = 0;
+  const games_won = 0;
+
+  const sql = 'INSERT INTO users (username, email, password, games_played, games_won) VALUES (?, ?, ?, ?, ?)';
+  db.run(sql, [username, email, password, games_played, games_won], (err) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
@@ -85,7 +96,7 @@ app.post('/logout', (req, res) => {
 // allow getting user info with token
 app.get('/user', (req, res) => {
   const token = req.query.token;
-  const sql = 'SELECT users.id, users.name, users.email FROM users INNER JOIN session_tokens ON users.id = session_tokens.user_id WHERE session_tokens.token = ?';
+  const sql = 'SELECT users.id, users.username, users.email, users.games_played, users.games_won FROM users INNER JOIN session_tokens ON users.id = session_tokens.user_id WHERE session_tokens.token = ?';
   db.get(sql, [token], (err, row) => {
     if (err) {
       return res.status(500).json({ error: err.message });
@@ -93,7 +104,105 @@ app.get('/user', (req, res) => {
     if (!row) {
       return res.status(401).json({ error: 'Invalid token.' });
     }
-    return res.json({ id: row.id, name: row.name, email: row.email });
+    return res.json({ id: row.id, username: row.username, email: row.email, games_played: row.games_played, games_won: row.games_won });
+  });
+});
+
+// update daily stats - called when they are done with the daily game
+app.post('/updatedaily', (req, res) => {
+  // user_id INTEGER NOT NULL, token TEXT NOT NULL UNIQUE, date TEXT NOT NULL, rounds_played INTEGER
+  const username = req.query.username;
+  // const token = req.query.token;
+  const date = req.query.date;
+  const rounds_played = req.query.rounds_played;
+
+  const sql = 'INSERT INTO daily_stats (username, date, rounds_played) VALUES (?, ?, ?)'
+  db.get(sql, [username, date, rounds_played], (err, row) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    return res.json({ success: 'Daily stats updated.' });
+  });
+});
+
+// leaderboard: get all players in order
+app.get('/dailyplayers', (req, res) => {
+  const date = req.query.date;
+
+  const sql = 'SELECT username, rounds_played FROM daily_stats WHERE date = ? ORDER BY rounds_played DESC';
+  db.all(sql, [date], (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    if (!rows || rows.length == 0) {
+      return res.status(401).json({ error: 'Nobody has played yet today.' });
+    }
+    return res.json(rows);
+  });
+});
+
+// leaderboard: get top 10 players
+app.get('/topten', (req, res) => {
+  const date = req.query.date;
+
+  const sql = 'SELECT username, rounds_played FROM daily_stats WHERE date = ? ORDER BY rounds_played DESC LIMIT 10';
+  db.all(sql, [date], (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    if (!rows || rows.length == 0) {
+      return res.status(401).json({ error: 'Nobody has played yet today.' });
+    }
+    return res.json(rows);
+  });
+});
+
+// personal stats: get win %
+app.get('/winrate', (req, res) => {
+  const username = req.query.username;
+
+  const sql = 'SELECT games_won, games_played FROM users WHERE username = ?';
+  db.get(sql, [username], (err, row) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    if (!row) {
+      return res.status(401).json({ error: 'Nobody has played yet today.' });
+    }
+    return res.json(row);
+  });
+});
+
+// personal stats: get round count for all games played
+app.get('/roundcount', (req, res) => {
+  const username = req.query.username;
+
+  const sql = 'SELECT rounds_played, COUNT(*) FROM daily_stats WHERE username = ? GROUP BY rounds_played';
+  db.all(sql, [username], (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    if (!rows || rows.length == 0) {
+      return res.status(401).json({ error: 'This user has not played the game.' });
+    }
+    return res.json(rows);
+  });
+});
+
+// personal stats: get daily round count
+app.get('/dailycount', (req, res) => {
+  const username = req.query.username;
+  const date = req.query.date;
+
+  const sql = 'SELECT rounds_played FROM daily_stats WHERE username = ? AND date = ?';
+  db.get(sql, [username, date], (err, row) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    if (!row) {
+      return res.status(401).json({ error: 'This user has not played yet today'});
+    }
+    return res.json(row);
   });
 });
 

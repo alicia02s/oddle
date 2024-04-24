@@ -4,6 +4,7 @@ import Card from "../../components/Card.jsx"
 import QuestionMark from '../../svg/QuestionMark'
 import SettingsIcon from '../../svg/SettingsIcon'
 import Button from "../../components/Button.jsx"
+import Text from "../../components/Text.jsx"
 
 import './Game.css'
 
@@ -192,7 +193,7 @@ function Game(begin) {
             </div>
 
             <div className='Game'>
-                <h3 className='TaskDescription'>There are {numSeedWords - 1} groups of 3 words that relate to each other. Select the odd one out.</h3>
+                <h3 className='TaskDescription'>There {numSeedWords - 1 === 1 ? `is` : `are`} {numSeedWords - 1} {numSeedWords - 1 === 1 ? `group` : `groups`} of 3 words that relate to each other. Select the odd one out.</h3>
                 <div className="card-container">
                     {cards}    
                 </div>
