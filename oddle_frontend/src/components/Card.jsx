@@ -15,7 +15,6 @@ import { Link } from "react-router-dom";
 // }
 
 function Card({
-    key,
     card_word,
     isOddle,
     onClick,
@@ -56,14 +55,27 @@ function Card({
                     backgroundColor: 'lightgray',
                 },
             },
+            wrong: {
+                backgroundColor: '#ECECEC',
+                outlineStyle: 'solid',  
+                outlineWidth: '2px',
+                outlineColor: 'black',
+                color: 'black',
+                '&:hover': {
+                    backgroundColor: 'lightgray',
+                },
+            }
         },
         size: {
-            game: {
+            normal: {
             
             },
-            else: {
+            tablet: {
             
             },
+            mobile: {
+
+            }
         },
         },
 

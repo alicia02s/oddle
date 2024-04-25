@@ -20,17 +20,31 @@ function Game(begin) {
     let cards = []
 
     if (loaded) {
-        cards = allWords.map((word, index) => (
-            <Card
-                key={index} // It's important to include a unique key when mapping
-                card_word={word}
-                isOddle={word == oddle}
-                onClick={() => checkAnswer(word, index)}
-                type= {(index === selected) ? 'selected' : 'normal'}
-                size="game"
-                linkTo="#ResultDiv"
-            />
-            ))
+        cards = allWords.map((word, index) => {
+            let type;
+            if (index === selected) {
+                if (word != oddle) {
+                    // console.log("wrong") debugging
+                    type = 'wrong'
+                } else {
+                    type = 'selected'
+                }
+            } else {
+                type = 'normal'
+            }
+
+            return (
+                <Card
+                    key={index} // It's important to include a unique key when mapping
+                    card_word={word}
+                    isOddle={word == oddle}
+                    onClick={() => checkAnswer(word, index)}
+                    type= {type}
+                    size="game"
+                    linkTo="#ResultDiv"
+                />
+                )
+            })
     } else {
         // set cards to be the placeholders!
         cards = []
@@ -134,6 +148,7 @@ function Game(begin) {
                 const result = await fetchAlikeWords(seed);  // Fetch alike words for each seed
                 const alikeWords = result[0];
                 const newSeed = result[1];
+                setSeedWords(newSeed, ...seedWords);
                 newAllWords.push(newSeed, ...alikeWords);  // Add both seed and its alike words to the array
             }
     
@@ -172,13 +187,13 @@ function Game(begin) {
             const newSeed = await fetchSeedWord();
             seeds.push(newSeed);
         }
-        setSeedWords(seeds);
+        // setSeedWords(seeds); not needed anymore!
         return seeds;  // Return the fetched seed words
     }
 
     return (
         <div className="GameFrontEndDiv">
-            <div className='Header'>
+            <div className='HeaderDiv'>
                 <div className='HeaderTitleMenu'>
                     <h2 className='HeaderTitle'>
                         <div className='HeaderMenuLeft'>
@@ -212,6 +227,7 @@ function Game(begin) {
                     </div>
                     <div className = "right-wrong">
                         <h3>{rightWrong === 2 && `The oddle was: ${oddle}`}</h3>
+                        <h3>{rightWrong === 2 && `The seed word(s) for each group are: ${seedWords}`}</h3>
                     </div>
                     <div className = "final-level">
                         <h3>{rightWrong === 2 && `Final Level: ${numSeedWords - 1}`}</h3> 
