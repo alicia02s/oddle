@@ -8,6 +8,7 @@ import EnterName from "./EnterName.jsx"
 import Text from "../../components/Text.jsx"
 
 import './Game.css'
+import Leaderboard from "./Leaderboard.jsx";
 
 function Game(begin) {
     const [numSeedWords, setNumSeedWords] = useState(1);
@@ -20,6 +21,7 @@ function Game(begin) {
     const [temp, setTemp] = useState([])
     const [revealed, setRevealed] = useState(false)
     const [joinLeaderBoard, setJoinLeaderBoard] = useState(false)
+    const [openLeaderboard, setOpenLeaderboard] = useState(false) // false = no Leaderboard popup, true = Leaderboard popup
 
     let cards = []
 
@@ -34,13 +36,13 @@ function Game(begin) {
                     // console.log("wrong") debugging
                     type = 'wrong'
                 } else {
-                    console.log('Selected correct')
+                    // console.log('Selected correct')
                     type = 'selected'
                 }
             } else { // If this card was NOT selected
                 if (selected > 0 && word == oddle) {
                     type = 'correct'
-                    console.log('correct')
+                    // console.log('correct')
                 } else {
                     type = 'normal'
                 }
@@ -233,8 +235,8 @@ function Game(begin) {
                 <div className='HeaderTitleMenu'>
                     <h2 className='HeaderTitle'>
                         <div className='HeaderMenuLeft'>
-                            <a>
-                                <h4>Leaderboard</h4>
+                            <a onClick={() => setOpenLeaderboard(true)}>
+                                <h4 className="LeaderboardLink">Leaderboard</h4>
                             </a>
                             <h4>Level {numSeedWords - 1}</h4>
                         </div>  
@@ -287,9 +289,14 @@ function Game(begin) {
                         {(rightWrong === 2) && <Button onClick = {joinLeaderBoardFunc} textInButton="Join Leaderboard" color="normal" size="normal" />}
                     </div>
 
+                    {/* Popups */}
+
                     {joinLeaderBoard && <div>
                         <EnterName 
                             rounds_played = {numSeedWords - 1}/>
+                    </div>}
+                    {openLeaderboard && <div onClick={() => setOpenLeaderboard(false)}>
+                        <Leaderboard />
                     </div>}
                 </div>
             </div>
