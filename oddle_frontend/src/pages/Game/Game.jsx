@@ -295,7 +295,9 @@ function Game(begin) {
                         <EnterName 
                             rounds_played = {numSeedWords - 1}/>
                     </div>}
-                    {openLeaderboard && <div onClick={() => setOpenLeaderboard(false)}>
+                    
+                    {/* FIX THIS SUCH THAT ONLY WHEN YOU CLICK OUT OF THE LEADERBOARD DOES IT REMOVE IT! */}
+                    {openLeaderboard && <div onClick={() => setOpenLeaderboard(false)}> 
                         <Leaderboard />
                     </div>}
                 </div>

@@ -1,8 +1,33 @@
 import React, { useEffect, useState } from "react"; 
 import axios from 'axios'
 import './Leaderboard.css'
+import ListEntry from "../../components/ListEntry";
 
 function Leaderboard() {
+    const [loaded, setLoaded] = useState(false)
+    const [allLists, setAllLists] = useState()
+
+    let leaderboardList = [];
+    
+    if (loaded) {
+        // Once we retrieved data from backend load leaderboard
+        leaderboardList = allLists.map((data, index) => {
+            return (
+                <ListEntry 
+                    username={data.username} 
+                    rounds_played={data.rounds_played}
+                    type={"normal"}
+                    size={"normal"}
+                    onClick={()=>console.log("implement on click function")}
+                    rank={index + 1} // The index also serves as the rank... Bad idea! (FIX LATER!)
+                    key={index}/>
+            )
+        })
+    } else {
+        // Else use a placeholder!
+        leaderboardList = null; // TODO work on this line!
+    }
+
     useEffect(() => {
         getDailyTopTen()
     }, [])
@@ -24,7 +49,9 @@ function Leaderboard() {
           
           axios.request(config)
           .then((response) => {
-            console.log(JSON.stringify(response.data));
+            setLoaded(true)
+            setAllLists(response.data)
+            // console.log(response.data) debug
           })
           .catch((error) => {
             console.log(error);
@@ -38,7 +65,12 @@ function Leaderboard() {
             <div className='LeaderboardAndFilters'>
                 <div className='Filters'></div>
                 <ul className='Leaderboard'>
-                    <li>user 1</li>
+                    <div className="Headers">
+                        <h6>Rank</h6>
+                        <h6 style={{textAlign: "left"}}>User</h6>
+                        <h6>Rounds Won</h6>
+                    </div>
+                    {leaderboardList}
                 </ul>
             </div>
         </div>
