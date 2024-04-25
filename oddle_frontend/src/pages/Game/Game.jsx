@@ -26,6 +26,7 @@ function Game(begin) {
     if (loaded) {
         cards = allWords.map((word, index) => {
             let type;
+            let functionInButton;
 
             // If this card was selected
             if (index === selected) {
@@ -45,12 +46,21 @@ function Game(begin) {
                 }
             }
 
+            // Sets the functionInButton to end the game
+            if (rightWrong > 0) { 
+                // The player chose an answer (correct or incorrect)
+                functionInButton = null;
+            } else {
+                // The player has NOT chosen an answer yet
+                functionInButton = () => checkAnswer(word, index)
+            }
+
             return (
                 <Card
                     key={index} // It's important to include a unique key when mapping
                     card_word={word}
                     isOddle={word == oddle}
-                    onClick={() => checkAnswer(word, index)}
+                    onClick={functionInButton}
                     type= {type}
                     size="game"
                     linkTo="#ResultDiv"
