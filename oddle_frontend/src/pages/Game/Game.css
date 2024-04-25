@@ -6,6 +6,7 @@
 .next-level-button{
     display: flex;
     justify-content: center;
+    margin-bottom:10px;
 }
 
 .title{
@@ -75,6 +76,10 @@
     width: 3.5rem;
 
 
+}
+
+.oddle-title{
+    font-family: "Special Elite", system-ui;
 }
 
 

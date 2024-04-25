@@ -4,6 +4,7 @@ import Card from "../../components/Card.jsx"
 import QuestionMark from '../../svg/QuestionMark'
 import SettingsIcon from '../../svg/SettingsIcon'
 import Button from "../../components/Button.jsx"
+import EnterName from "./EnterName.jsx"
 import Text from "../../components/Text.jsx"
 
 import './Game.css'
@@ -18,6 +19,7 @@ function Game(begin) {
     const [selected, setSelected] = useState(-1)    // value is index of the button that was selected (default is -1, i.e. no button selected)
     const [temp, setTemp] = useState([])
     const [revealed, setRevealed] = useState(false)
+    const [joinLeaderBoard, setJoinLeaderBoard] = useState(false)
 
     let cards = []
 
@@ -75,7 +77,10 @@ function Game(begin) {
     }, [])
     
 
-    
+    function joinLeaderBoardFunc(){
+        setJoinLeaderBoard(true);
+    }
+
     function getRandomInt(n) {
         return Math.floor(Math.random() * (n + 1));
     }
@@ -222,8 +227,10 @@ function Game(begin) {
                                 <h4>Leaderboard</h4>
                             </a>
                             <h4>Level {numSeedWords - 1}</h4>
-                        </div> 
-                        Oddle
+                        </div>  
+                        <div className = "oddle-title">
+                            <h1>Oddle</h1>
+                        </div>
                         <div className='HeaderMenus'>
                             <QuestionMark color="#6B6B6B" width="36" height="36" />
                             <SettingsIcon color="#6B6B6B" width="36" height="36" />
@@ -266,6 +273,14 @@ function Game(begin) {
                     <div className = "next-level-button">
                         {(rightWrong === 2 && !revealed) && <Button onClick = {reveal} textInButton="Reveal Groups" color="normal" size="normal" />}
                     </div>
+                    <div className = "next-level-button">
+                        {(rightWrong === 2) && <Button onClick = {joinLeaderBoardFunc} textInButton="Join Leaderboard" color="normal" size="normal" />}
+                    </div>
+
+                    {joinLeaderBoard && <div>
+                        <EnterName 
+                            rounds_played = {numSeedWords - 1}/>
+                    </div>}
                 </div>
             </div>
         </div>
