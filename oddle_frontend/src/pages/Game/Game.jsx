@@ -253,7 +253,7 @@ function Game(begin) {
                     </div>
                     <div className = "right-wrong">
                         {rightWrong === 2 && <h3>
-                            The oddle was: <span style={{color: "#9593FF"}}>{oddle}</span>
+                            The oddle was: <span style={{textDecoration: 'underline #9593FF', color: "black"}}>{oddle}</span>
                         </h3>
                         }
                     </div>
