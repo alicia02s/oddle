@@ -16,6 +16,8 @@ function Game(begin) {
     const [rightWrong, setRightWrong] = useState(0) // 0 do nothing, 1 correct, 2 wrong
     const [loaded, setLoaded] = useState(false)
     const [selected, setSelected] = useState(-1)    // value is index of the button that was selected (default is -1, i.e. no button selected)
+    const [temp, setTemp] = useState([])
+    const [revealed, setRevealed] = useState(false)
 
     let cards = []
 
@@ -98,11 +100,22 @@ function Game(begin) {
         setLoaded(true)
     }
 
+    function reveal() {
+        let toEdit = temp
+        if (toEdit.length > 0) {
+            const firstElement = toEdit.shift(); // Remove the first element and store it
+            toEdit.push(firstElement); // Add the removed element to the end of the array
+        }
+        setAllWords(toEdit)
+        setRevealed(true)
+    }
+
     function nextLevel(){
         setLoaded(false)
         setNumSeedWords(oldNum => oldNum + 1)
         setRightWrong(0)
         getAllWords()
+        setRevealed(false)
         // shuffleCards()
         // setStarted(true)
     }
@@ -159,7 +172,7 @@ function Game(begin) {
                 setSeedWords(newSeed, ...seedWords);
                 newAllWords.push(newSeed, ...alikeWords);  // Add both seed and its alike words to the array
             }
-    
+            setTemp(newAllWords)
             shuffleCards(newAllWords);  // Shuffle the complete list of words before setting them
         } catch (error) {
             console.error('Failed to fetch words:', error);
@@ -221,9 +234,14 @@ function Game(begin) {
 
             <div className='Game'>
                 <h4 className='TaskDescription'>There {numSeedWords - 1 === 1 ? `is` : `are`} {numSeedWords - 1} {numSeedWords - 1 === 1 ? `group` : `groups`} of 3 words that relate to each other. Select the odd one out.</h4>
-                <div className="card-container">
+                
+                {!revealed && <div className="card-container">
                     {cards}    
-                </div>
+                </div>}
+
+                {revealed && <div className="card-container-reveal">
+                    {cards}    
+                </div>}
 
                 
                 {loaded && (rightWrong === 0) && <Button onClick = {() => shuffleCards(allWords)} textInButton="Shuffle" color="normal" size="normal" />}
@@ -244,7 +262,10 @@ function Game(begin) {
                         </div>
                     <div className = "next-level-button">
                         {rightWrong === 1 && <Button onClick = {nextLevel} textInButton="Next Level" color="normal" size="normal" />}
-                    </div>       
+                    </div>
+                    <div className = "next-level-button">
+                        {(rightWrong === 2 && !revealed) && <Button onClick = {reveal} textInButton="Reveal Groups" color="normal" size="normal" />}
+                    </div>
                 </div>
             </div>
         </div>

@@ -85,6 +85,13 @@
     padding: 20px; /* Adjust the padding as needed */
 }
 
+.card-container-reveal {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; /* Adjust the gap size as needed */
+    padding: 20px; /* Adjust the padding as needed */
+}
+
 .HeaderMenuLeft {
     display: flex;
     flex-direction: column;
