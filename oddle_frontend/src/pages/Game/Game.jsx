@@ -33,11 +33,12 @@ function Game(begin) {
                     type = 'selected'
                 }
             } else { // If this card was NOT selected
-                if (word == oddle) {
+                if (selected > 0 && word == oddle) {
                     type = 'correct'
                     console.log('correct')
+                } else {
+                    type = 'normal'
                 }
-                type = 'normal'
             }
 
             return (
