@@ -62,17 +62,15 @@ function Leaderboard() {
     <div className='popupOverlay'>
         <div className='popupContent'>
             <h2>Oddle Leaderboard</h2>
-            <div className='LeaderboardAndFilters'>
+            <ul className='Leaderboard'>
                 <div className='Filters'></div>
-                <ul className='Leaderboard'>
-                    <div className="Headers">
-                        <h6>Rank</h6>
-                        <h6 style={{textAlign: "left"}}>User</h6>
-                        <h6>Rounds Won</h6>
-                    </div>
-                    {leaderboardList}
-                </ul>
-            </div>
+                <div className="Headers">
+                    <h6>Rank</h6>
+                    <h6 style={{textAlign: "left"}}>User</h6>
+                    <h6>Rounds Won</h6>
+                </div>
+                {leaderboardList}
+            </ul>
         </div>
     </div>
     
