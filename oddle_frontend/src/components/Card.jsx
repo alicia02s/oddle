@@ -40,43 +40,53 @@ function Card({
         border: "none",
 
         variants: {
-        type: {
-            selected: {
-                backgroundColor: '#9593FF',
-                color: 'white',
-                '&:hover': {
-                    backgroundColor: 'darkviolet',
+            type: {
+                selected: {
+                    backgroundColor: '#9593FF',
+                    color: 'white',
+                    '&:hover': {
+                        backgroundColor: 'darkviolet',
+                    },
                 },
-            },
-            normal: {
-                backgroundColor: '#ECECEC',
-                color: 'black',
-                '&:hover': {
-                    backgroundColor: 'lightgray',
+                normal: {
+                    backgroundColor: '#ECECEC',
+                    color: 'black',
+                    '&:hover': {
+                        backgroundColor: 'lightgray',
+                    },
                 },
-            },
-            wrong: {
-                backgroundColor: '#ECECEC',
-                outlineStyle: 'solid',  
-                outlineWidth: '2px',
-                outlineColor: 'black',
-                color: 'black',
-                '&:hover': {
-                    backgroundColor: 'lightgray',
+                wrong: {
+                    backgroundColor: '#ECECEC',
+                    outlineStyle: 'solid',  
+                    outlineWidth: '2px',
+                    outlineColor: 'black',
+                    color: 'black',
+                    '&:hover': {
+                        backgroundColor: 'lightgray',
+                    },
                 },
-            }
-        },
-        size: {
-            normal: {
-            
+                correct: {
+                    backgroundColor: '#ECECEC',
+                    outlineStyle: 'solid',  
+                    outlineWidth: '2px',
+                    outlineColor: '#9593FF',
+                    color: 'black',
+                    '&:hover': {
+                        backgroundColor: 'lightgray',
+                    },
+                }
             },
-            tablet: {
-            
-            },
-            mobile: {
+            size: {
+                normal: {
+                
+                },
+                tablet: {
+                
+                },
+                mobile: {
 
-            }
-        },
+                }
+            },
         },
 
         // '&:hover': {

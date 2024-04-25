@@ -22,14 +22,21 @@ function Game(begin) {
     if (loaded) {
         cards = allWords.map((word, index) => {
             let type;
+
+            // If this card was selected
             if (index === selected) {
                 if (word != oddle) {
                     // console.log("wrong") debugging
                     type = 'wrong'
                 } else {
+                    console.log('Selected correct')
                     type = 'selected'
                 }
-            } else {
+            } else { // If this card was NOT selected
+                if (word == oddle) {
+                    type = 'correct'
+                    console.log('correct')
+                }
                 type = 'normal'
             }
 
@@ -227,7 +234,7 @@ function Game(begin) {
                     </div>
                     <div className = "right-wrong">
                         <h3>{rightWrong === 2 && `The oddle was: ${oddle}`}</h3>
-                        <h3>{rightWrong === 2 && `The seed word(s) for each group are: ${seedWords}`}</h3>
+                        {/* <h3>{rightWrong === 2 && `The seed word(s) for each group are: ${seedWords}`}</h3> */}
                     </div>
                     <div className = "final-level">
                         <h3>{rightWrong === 2 && `Final Level: ${numSeedWords - 1}`}</h3> 
