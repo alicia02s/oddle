@@ -28,9 +28,11 @@ function Game(begin) {
                 onClick={() => checkAnswer(word, index)}
                 type= {(index === selected) ? 'selected' : 'normal'}
                 size="game"
+                linkTo="#ResultDiv"
             />
             ))
     } else {
+        // set cards to be the placeholders!
         cards = []
         for (let i = 0; i < (numSeedWords-1)*4; i++) {
             cards.push(         
@@ -177,23 +179,25 @@ function Game(begin) {
     return (
         <div className="GameFrontEndDiv">
             <div className='Header'>
-                <div className='HeaderMenuLeft'>
-                    <h3>Leaderboard</h3>
-                    <h3>Level {numSeedWords - 1}</h3>
-                </div>
-                
                 <div className='HeaderTitleMenu'>
-                    <h2 className='HeaderTitle'>Oddle
+                    <h2 className='HeaderTitle'>
+                        <div className='HeaderMenuLeft'>
+                            <a>
+                                <h4>Leaderboard</h4>
+                            </a>
+                            <h4>Level {numSeedWords - 1}</h4>
+                        </div> 
+                        Oddle
                         <div className='HeaderMenus'>
-                        <QuestionMark color="#6B6B6B" width="36" height="36" />
-                        <SettingsIcon color="#6B6B6B" width="36" height="36" />
+                            <QuestionMark color="#6B6B6B" width="36" height="36" />
+                            <SettingsIcon color="#6B6B6B" width="36" height="36" />
                         </div>
                     </h2>
                 </div>
             </div>
 
             <div className='Game'>
-                <h3 className='TaskDescription'>There {numSeedWords - 1 === 1 ? `is` : `are`} {numSeedWords - 1} {numSeedWords - 1 === 1 ? `group` : `groups`} of 3 words that relate to each other. Select the odd one out.</h3>
+                <h4 className='TaskDescription'>There {numSeedWords - 1 === 1 ? `is` : `are`} {numSeedWords - 1} {numSeedWords - 1 === 1 ? `group` : `groups`} of 3 words that relate to each other. Select the odd one out.</h4>
                 <div className="card-container">
                     {cards}    
                 </div>
@@ -201,16 +205,16 @@ function Game(begin) {
                 
                 {loaded && (rightWrong === 0) && <Button onClick = {() => shuffleCards(allWords)} textInButton="Shuffle" color="normal" size="normal" />}
 
-                <div>
+                <div className="ResultDiv" id="ResultDiv">
                     <div className = "right-wrong">
                         <h2>{rightWrong === 1 && "You got it right!"}</h2>
-                        <h2>{rightWrong === 2 && "You got it wrong"}</h2>
+                        <h3>{rightWrong === 2 && "You got it wrong"}</h3>
                     </div>
                     <div className = "right-wrong">
-                        <h2>{rightWrong === 2 && `The oddle was: ${oddle}`}</h2>
+                        <h3>{rightWrong === 2 && `The oddle was: ${oddle}`}</h3>
                     </div>
                     <div className = "final-level">
-                        <h2>{rightWrong === 2 && `Final Level: ${numSeedWords - 1}`}</h2> 
+                        <h3>{rightWrong === 2 && `Final Level: ${numSeedWords - 1}`}</h3> 
                         </div>
                     <div className = "next-level-button">
                         {rightWrong === 1 && <Button onClick = {nextLevel} textInButton="Next Level" color="normal" size="normal" />}

@@ -37,17 +37,18 @@
 }
 .Header {
     display: block;
+    width: 100%;
 }
 
 .HeaderTitleMenu {
     display: flex;
     width: 100%;
-    height: fit-content;
 }
 .HeaderTitle {
     display: block;
     position: relative;
     left: 50%;
+    top: 3rem;
     transform: translate(-50%, -50%);
     text-align: center;
 
@@ -72,4 +73,24 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 20px; /* Adjust the gap size as needed */
     padding: 20px; /* Adjust the padding as needed */
-  }
+}
+
+.HeaderMenuLeft {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0px;
+
+    position: absolute;
+    right: 16rem;
+    top: 0.25rem;
+}
+
+.HeaderMenuLeft * {
+    margin: 0;
+}
+
+.ResultDiv {
+    height: 100%;
+    margin-bottom: 4rem;
+}

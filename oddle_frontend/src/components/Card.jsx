@@ -1,6 +1,7 @@
 import React from "react"
 import { styled } from './../stitches.config';
 import Placeholder from 'react-bootstrap/Placeholder';
+import { Link } from "react-router-dom";
 
 // function Card(props){
 //     const oddle = "oddle"
@@ -20,7 +21,8 @@ function Card({
     onClick,
     type,
     size,
-    placeHolder
+    placeHolder,
+    linkTo
   }) {
     const oddle = "oddle"
     
@@ -28,7 +30,7 @@ function Card({
         display: "flex",
         justifyContent: "center",
         // px: "$xxxl",
-        py: "$xxxl",
+        py: "$xxl",
         minWidth: "16rem",
         borderRadius: "$rounded_lg",
 
@@ -77,6 +79,26 @@ function Card({
         },
     });
 
+    if (linkTo) {
+        return (
+            <a href={linkTo} style={{ textDecoration: "none"}}>
+                <StyledButton       
+                    type={type}
+                    size={size}
+                    onClick={onClick}
+                > 
+                    {!placeHolder && card_word}
+                    {placeHolder && <Placeholder 
+                        style={{
+                            width: "75%",
+                            display: "inline-block",
+                            minHeight: "1em",
+                            opacity: "1",
+                            backgroundColor: "#DDD8D8"}} animation="glow" size="lg" />}
+                </StyledButton>
+            </a>
+        )
+    }
     return (
         <StyledButton       
             type={type}
@@ -85,12 +107,12 @@ function Card({
         > 
             {!placeHolder && card_word}
             {placeHolder && <Placeholder 
-          style={{
-            width: "75%",
-            display: "inline-block",
-            minHeight: "1em",
-            opacity: "1",
-            backgroundColor: "#DDD8D8"}} animation="glow" size="lg" />}
+                style={{
+                    width: "75%",
+                    display: "inline-block",
+                    minHeight: "1em",
+                    opacity: "1",
+                    backgroundColor: "#DDD8D8"}} animation="glow" size="lg" />}
         </StyledButton>
     )
 }
