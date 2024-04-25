@@ -234,8 +234,10 @@ function Game(begin) {
                         <h3>{rightWrong === 2 && "You got it wrong"}</h3>
                     </div>
                     <div className = "right-wrong">
-                        <h3>{rightWrong === 2 && `The oddle was: ${oddle}`}</h3>
-                        {/* <h3>{rightWrong === 2 && `The seed word(s) for each group are: ${seedWords}`}</h3> */}
+                        {rightWrong === 2 && <h3>
+                            The oddle was: <span style={{color: "#9593FF"}}>{oddle}</span>
+                        </h3>
+                        }
                     </div>
                     <div className = "final-level">
                         <h3>{rightWrong === 2 && `Final Level: ${numSeedWords - 1}`}</h3> 
