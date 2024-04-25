@@ -29,6 +29,7 @@ function EnterName(props){
             axios.request(config)
             .then((response) => {
             console.log(JSON.stringify(response.data));
+            // after api response load the leaderboard component
             })
             .catch((error) => {
             console.log(error);
