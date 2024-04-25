@@ -41,3 +41,8 @@
 .Headers * {
     margin-bottom: 0;
 }
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+}

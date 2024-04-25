@@ -3,7 +3,7 @@ import axios from 'axios'
 import './Leaderboard.css'
 import ListEntry from "../../components/ListEntry";
 
-function Leaderboard() {
+function Leaderboard({ close }) {
     const [loaded, setLoaded] = useState(false)
     const [allLists, setAllLists] = useState()
 
@@ -61,7 +61,11 @@ function Leaderboard() {
 
     <div className='popupOverlay'>
         <div className='popupContent'>
-            <h2>Oddle Leaderboard</h2>
+            <div className="popup-header">
+                <h2>Oddle Leaderboard</h2>
+                <h4 onClick={close}>x</h4>
+            </div>
+            
             <ul className='Leaderboard'>
                 <div className='Filters'></div>
                 <div className="Headers">

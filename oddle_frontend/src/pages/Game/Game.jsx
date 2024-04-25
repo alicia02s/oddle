@@ -93,6 +93,15 @@ function Game(begin) {
         setJoinLeaderBoard(true);
     }
 
+    function closeNameOpenLeaderboard() {
+        setJoinLeaderBoard(false);
+        setOpenLeaderboard(true);
+    }
+
+    function closeLeaderboard() {
+        setOpenLeaderboard(false);
+    }
+
     function getRandomInt(n) {
         return Math.floor(Math.random() * (n + 1));
     }
@@ -293,12 +302,14 @@ function Game(begin) {
 
                     {joinLeaderBoard && <div>
                         <EnterName 
-                            rounds_played = {numSeedWords - 1}/>
+                            rounds_played = {numSeedWords - 1}
+                            close = {closeNameOpenLeaderboard}/>
                     </div>}
                     
                     {/* FIX THIS SUCH THAT ONLY WHEN YOU CLICK OUT OF THE LEADERBOARD DOES IT REMOVE IT! */}
-                    {openLeaderboard && <div onClick={() => setOpenLeaderboard(false)}> 
-                        <Leaderboard />
+                    {openLeaderboard && <div> 
+                        <Leaderboard 
+                            close = {closeLeaderboard}/>
                     </div>}
                 </div>
             </div>

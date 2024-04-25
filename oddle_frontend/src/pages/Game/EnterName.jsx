@@ -30,6 +30,7 @@ function EnterName(props){
             .then((response) => {
             console.log(JSON.stringify(response.data));
             // after api response load the leaderboard component
+            props.close();
             })
             .catch((error) => {
             console.log(error);
