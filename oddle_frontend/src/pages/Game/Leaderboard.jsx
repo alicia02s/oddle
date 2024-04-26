@@ -61,8 +61,8 @@ function Leaderboard({ close }) {
 
     <div className='popupOverlay'>
         <div className='popupContent'>
-            <h2>Oddle Leaderboard</h2>
             <h4 className="closeButton" onClick={close}>x</h4>
+            <h2>Oddle Leaderboard</h2>
             
             <ul className='Leaderboard'>
                 <div className='Filters'></div>
