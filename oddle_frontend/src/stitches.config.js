@@ -48,7 +48,8 @@ export const {
 
     },
     media: {
-      bp1: '(min-width: 480px)',
+      tablet: '(max-width: 900px)',
+      mobile: '(max-width: 600px)',
     },
     utils: {
         // paddings

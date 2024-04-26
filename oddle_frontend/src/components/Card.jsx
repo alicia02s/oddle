@@ -29,8 +29,8 @@ function Card({
         display: "flex",
         justifyContent: "center",
         // px: "$xxxl",
-        py: "$xxl",
-        minWidth: "16rem",
+        // py: "$xxl",
+        // minWidth: "16rem",
         borderRadius: "$rounded_lg",
 
         fontFamily: "sans-serif",
@@ -78,13 +78,16 @@ function Card({
             },
             size: {
                 normal: {
-                
+                    py: "$xxl",
+                    minWidth: "16rem",
                 },
                 tablet: {
-                
+                    py: "$xxl",
+                    minWidth: "14rem",
                 },
                 mobile: {
-
+                    py: "$xl",
+                    minWidth: "10rem",
                 }
             },
         },

@@ -123,3 +123,37 @@
 .LeaderboardLink:hover {
     cursor: pointer;
 }
+
+/* Tablet Sizes */
+@media screen and (max-width: 900px) {
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px; /* Adjust the gap size as needed */
+        padding: 10px; /* Adjust the padding as needed */
+    }
+    
+    .card-container-reveal {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px; /* Adjust the gap size as needed */
+        padding: 10px; /* Adjust the padding as needed */
+    }
+}
+
+/* Mobile Sizes */
+@media screen and (max-width: 600px) {
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px; /* Adjust the gap size as needed */
+        padding: 5px; /* Adjust the padding as needed */
+    }
+    
+    .card-container-reveal {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px; /* Adjust the gap size as needed */
+        padding: 5px; /* Adjust the padding as needed */
+    }
+}

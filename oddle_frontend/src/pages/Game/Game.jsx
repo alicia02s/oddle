@@ -64,7 +64,11 @@ function Game(begin) {
                     isOddle={word == oddle}
                     onClick={functionInButton}
                     type= {type}
-                    size="game"
+                    size= {{
+                        '@initial': 'normal',
+                        '@tablet': 'tablet',
+                        '@mobile': 'mobile',
+                    }}
                     linkTo="#ResultDiv"
                 />
                 )
@@ -77,7 +81,11 @@ function Game(begin) {
                 <Card
                 key={i} // It's important to include a unique key when mapping
                 type= {'normal'}
-                size="game"
+                size= {{
+                    '@initial': 'normal',
+                    '@tablet': 'tablet',
+                    '@mobile': 'mobile',
+                }}
                 placeHolder
             />)
         }
