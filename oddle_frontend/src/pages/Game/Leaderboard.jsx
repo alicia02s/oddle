@@ -59,8 +59,8 @@ function Leaderboard({ close }) {
     }
   return (
 
-    <div className='popupOverlay'>
-        <div className='popupContent'>
+    <div className='popupOverlay' onClick={() => {close()}}>
+        <div className='popupContent' onClick={e => {e.stopPropagation()}}> {/* e.stopPropagation() allows the ability to click outside!!!*/}
             <h4 className="closeButton" onClick={close}>x</h4>
             <h2>Oddle Leaderboard</h2>
             
