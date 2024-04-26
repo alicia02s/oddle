@@ -46,3 +46,14 @@
     display: flex;
     justify-content: space-between;
 }
+
+.closeButton {
+    width: fit-content;
+    position: relative;
+    top: -4rem;
+    right: -29rem;
+}
+
+.closeButton:hover {
+    cursor: pointer;
+}
