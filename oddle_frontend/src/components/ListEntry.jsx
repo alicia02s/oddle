@@ -60,7 +60,7 @@ function ListEntry({
             {!placeHolder && 
             <div style={{display: "grid", gridTemplateColumns:"2fr 6fr 3fr", width: "100%"}}>
                 <h3>{rank}</h3>
-                <h3 style={{textAlign: "left"}}>{username}</h3>
+                <h3 style={{textAlign: "left", overflowX: 'auto'}}>{username}</h3>
                 <h3>{rounds_played}</h3>
             </div>}
             {placeHolder && <Placeholder 
