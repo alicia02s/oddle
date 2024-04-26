@@ -13,9 +13,7 @@ const _dirname = dirname(fileURLToPath(import.meta.url));
 app.use(cors());
 app.use(express.static(join(_dirname, 'dist')));
 
-app.get('*', (req, res) => {
-  res.sendFile(join(_dirname, 'dist', 'index.html'));
-})
+
 
 // // use SQLite database
 // const sqlite3 = require('sqlite3').verbose();
@@ -216,6 +214,10 @@ app.get('/dailycount', (req, res) => {
     return res.json(row);
   });
 });
+
+app.get('*', (req, res) => {
+  res.sendFile(join(_dirname, 'dist', 'index.html'));
+})
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
