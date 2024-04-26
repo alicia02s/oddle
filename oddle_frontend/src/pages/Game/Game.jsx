@@ -98,6 +98,10 @@ function Game(begin) {
         setOpenLeaderboard(true);
     }
 
+    function closeName() {
+        setJoinLeaderBoard(false);
+    }
+
     function closeLeaderboard() {
         setOpenLeaderboard(false);
     }
@@ -303,7 +307,8 @@ function Game(begin) {
                     {joinLeaderBoard && <div>
                         <EnterName 
                             rounds_played = {numSeedWords - 1}
-                            close = {closeNameOpenLeaderboard}/>
+                            closeNameOpenLeader = {closeNameOpenLeaderboard}
+                            closeName = {closeName} />
                     </div>}
                     
                     {/* FIX THIS SUCH THAT ONLY WHEN YOU CLICK OUT OF THE LEADERBOARD DOES IT REMOVE IT! */}

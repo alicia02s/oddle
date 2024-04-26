@@ -30,7 +30,7 @@ function EnterName(props){
             .then((response) => {
             console.log(JSON.stringify(response.data));
             // after api response load the leaderboard component
-            props.close();
+            props.closeNameOpenLeader();
             })
             .catch((error) => {
             console.log(error);
@@ -39,8 +39,9 @@ function EnterName(props){
     }
 
     return(
-        <div className = "popup-overlay">
-            <div className="popup-content">
+        <div className = "popup-overlay-name" onClick={() => {props.closeName()}}>
+            <div className="popup-content-name" onClick={e => {e.stopPropagation()}}>
+                <h4 className="closeButtonName" onClick={props.closeName}>x</h4>
                 <input
                     type="text"
                     value={inputValue}
