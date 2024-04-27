@@ -22,6 +22,7 @@ function Game(begin) {
     const [revealed, setRevealed] = useState(false)
     const [joinLeaderBoard, setJoinLeaderBoard] = useState(false)
     const [openLeaderboard, setOpenLeaderboard] = useState(false) // false = no Leaderboard popup, true = Leaderboard popup
+    const [leaderBoardOnce, setLeaderBoardOnce] = useState(true) // only can join leader board once
 
     let cards = []
 
@@ -99,6 +100,7 @@ function Game(begin) {
 
     function joinLeaderBoardFunc(){
         setJoinLeaderBoard(true);
+        setLeaderBoardOnce(false);
     }
 
     function closeNameOpenLeaderboard() {
@@ -108,6 +110,7 @@ function Game(begin) {
 
     function closeName() {
         setJoinLeaderBoard(false);
+        
     }
 
     function closeLeaderboard() {
@@ -307,7 +310,7 @@ function Game(begin) {
                         {(rightWrong === 2 && !revealed) && <Button onClick = {reveal} textInButton="Reveal Groups" color="normal" size="normal" />}
                     </div>
                     <div className = "next-level-button">
-                        {(rightWrong === 2) && <Button onClick = {joinLeaderBoardFunc} textInButton="Join Leaderboard" color="normal" size="normal" />}
+                        {(rightWrong === 2 && leaderBoardOnce) && <Button onClick = {joinLeaderBoardFunc} textInButton="Join Leaderboard" color="normal" size="normal" />}
                     </div>
 
                     {/* Popups */}
