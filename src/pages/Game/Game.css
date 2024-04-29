@@ -106,10 +106,12 @@
     position: absolute;
     right: 16rem;
     top: 0.25rem;
+    width: 100%;
 }
 
 .HeaderMenuLeft * {
     margin: 0;
+    width: fit-content;
 }
 
 .ResultDiv {
@@ -139,6 +141,9 @@
         gap: 10px; /* Adjust the gap size as needed */
         padding: 10px; /* Adjust the padding as needed */
     }
+    .HeaderDiv {
+        margin-bottom: 6rem;
+    }
 }
 
 /* Mobile Sizes */
@@ -155,5 +160,13 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 5px; /* Adjust the gap size as needed */
         padding: 5px; /* Adjust the padding as needed */
+    }
+    .HeaderMenuLeft {
+        position: absolute;
+        left: -9.5rem;
+        top: -0.5rem;
+    }
+    .HeaderDiv {
+        margin-bottom: 4rem;
     }
 }

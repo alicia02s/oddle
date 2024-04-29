@@ -268,8 +268,8 @@ function Game(begin) {
                             <h1>Oddle</h1>
                         </div>
                         <div className='HeaderMenus'>
-                            <QuestionMark color="#6B6B6B" width="36" height="36" />
-                            <SettingsIcon color="#6B6B6B" width="36" height="36" />
+                            {/* <QuestionMark color="#6B6B6B" width="36" height="36" />
+                            <SettingsIcon color="#6B6B6B" width="36" height="36" /> */}
                         </div>
                     </h2>
                 </div>
