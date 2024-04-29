@@ -75,6 +75,7 @@
     animation:
         typing 2s steps(39);
         cursor: .9s step-end infinite alternate;
+    text-align: center;
 }
 
 @keyframes cursor {
@@ -88,4 +89,25 @@
 h4 {
     font-family: "Special Elite", system-ui;
     padding: 1px;
+}
+
+/* Tablet Sizes */
+@media screen and (max-width: 900px) {
+
+}
+
+/* Mobile Sizes */
+@media screen and (max-width: 600px) {
+    .desc {
+        /* justify-content: center; */
+        font-size: 1.5em;
+        letter-spacing: 5px;
+        font-family: "Special Elite", system-ui;
+        border-right: 0;
+        width: 100%;
+        text-wrap: wrap; 
+        overflow: hidden;
+        animation: none;
+        text-align: center;
+    }
 }
