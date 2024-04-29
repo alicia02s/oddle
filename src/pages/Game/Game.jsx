@@ -182,7 +182,7 @@ function Game(begin) {
         const response = await fetch(`https://api.api-ninjas.com/v1/thesaurus?word=${word}`, {
             method: 'GET',
             headers: {
-                'X-Api-Key': 'eYNgburuDe5fmupuFfedpw==jvrAI65Gue0qzHKS'
+                'X-Api-Key': 'b7AeVzHBCi33RYmI/R6qtw==KQf1ebpSU3QXkynP'
             }
         });
         const data = await response.json();
